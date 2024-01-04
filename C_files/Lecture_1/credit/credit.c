@@ -26,20 +26,26 @@ int main()
         }
         
         //Check Mastercard
-        if (mastercard(input))
+        else if (mastercard(input))
         {
             printf("MASTERCARD\n");
         }
 
         //Check VISA
-        if (visa(input))
+        else if (visa(input))
         {
             printf("VISA\n");
+        }
+
+        //If checksum is valid but it is none of the cards
+        else
+        {
+            printf("INVALID\n");
         }
     }
     else
     {
-        printf("Invalid\n");
+        printf("INVALID\n");
     }
 
     return 0;
@@ -114,11 +120,9 @@ bool american_express(long long input)
         {
             return true;
         }
-    }
-    else
-    {
         return false;
     }
+    return false;
 }
 
 //Mastercard Function
@@ -130,15 +134,9 @@ bool mastercard(long long input)
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
-    }
-    else
-    {
         return false;
     }
+    return false;
 }
 
 //VISA Function
@@ -150,6 +148,7 @@ bool visa(long long input)
         {
             return true;
         }
+        return false;
     }
     else if (number_of_digits(input) == 16)
     {
@@ -157,9 +156,7 @@ bool visa(long long input)
         {
             return true;
         }
-    }
-    else
-    {
         return false;
     }
+    return false;
 }
