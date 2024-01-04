@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 
 bool checksum (long long input);
 int sum_of_digits(int num);
+int number_of_digits(long long input);
+bool american_express(long long input);
 
 int main()
 {
@@ -13,6 +16,10 @@ int main()
 
     if (checksum(input))
     {
+        if (american_express(input))
+        {
+            printf("AMEX\n");
+        }
         printf("Valid\n");
     }
     else
@@ -69,4 +76,32 @@ int sum_of_digits(int num)
         temp = temp / 10;
     }
     return sum;
+}
+
+//Number of digits function
+int number_of_digits(long long input)
+{
+    int digits = 0;
+    while (input != 0)
+    {
+        input = input / 10;
+        digits++;
+    }
+    return digits;
+}
+
+//American Express Function
+bool american_express(long long input)
+{
+    if (number_of_digits(input) == 15)
+    {
+        if (input / 10000000000000 == 34 || input / 10000000000000 == 37)
+        {
+            return true;
+        }
+    }
+    else
+    {
+        return false;
+    }
 }
