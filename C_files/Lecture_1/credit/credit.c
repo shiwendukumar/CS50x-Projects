@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include <math.h>
 
+//Function Declaration
 bool checksum (long long input);
 int sum_of_digits(int num);
 int number_of_digits(long long input);
 bool american_express(long long input);
 bool mastercard(long long input);
+bool visa(long long input);
 
 int main()
 {
@@ -15,18 +16,26 @@ int main()
     printf("Number: ");
     scanf("%lld", &input);
 
+    //Check conditions
     if (checksum(input))
     {
+        //Check American Express
         if (american_express(input))
         {
             printf("AMEX\n");
         }
         
+        //Check Mastercard
         if (mastercard(input))
         {
             printf("MASTERCARD\n");
         }
-        printf("Valid\n");
+
+        //Check VISA
+        if (visa(input))
+        {
+            printf("VISA\n");
+        }
     }
     else
     {
@@ -118,6 +127,33 @@ bool mastercard(long long input)
     if (number_of_digits(input) == 16)
     {
         if (input / 100000000000000 == 51 || input / 100000000000000 == 52 || input / 100000000000000 == 53 || input / 100000000000000 == 54 || input / 100000000000000 == 55)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
+
+//VISA Function
+bool visa(long long input)
+{
+    if (number_of_digits(input) == 13)
+    {
+        if (input / 1000000000000 == 4 || input / 1000000000000 == 4)
+        {
+            return true;
+        }
+    }
+    else if (number_of_digits(input) == 16)
+    {
+        if (input / 1000000000000000 == 4 || input / 1000000000000000 == 4)
         {
             return true;
         }
