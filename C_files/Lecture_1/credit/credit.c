@@ -6,6 +6,7 @@ bool checksum (long long input);
 int sum_of_digits(int num);
 int number_of_digits(long long input);
 bool american_express(long long input);
+bool mastercard(long long input);
 
 int main()
 {
@@ -19,6 +20,11 @@ int main()
         if (american_express(input))
         {
             printf("AMEX\n");
+        }
+        
+        if (mastercard(input))
+        {
+            printf("MASTERCARD\n");
         }
         printf("Valid\n");
     }
@@ -96,6 +102,22 @@ bool american_express(long long input)
     if (number_of_digits(input) == 15)
     {
         if (input / 10000000000000 == 34 || input / 10000000000000 == 37)
+        {
+            return true;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
+
+//Mastercard Function
+bool mastercard(long long input)
+{
+    if (number_of_digits(input) == 16)
+    {
+        if (input / 100000000000000 == 51 || input / 100000000000000 == 52 || input / 100000000000000 == 53 || input / 100000000000000 == 54 || input / 100000000000000 == 55)
         {
             return true;
         }
