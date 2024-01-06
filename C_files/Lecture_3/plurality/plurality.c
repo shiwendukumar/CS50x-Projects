@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
+#include <strings.h>
 
 // Max number of candidates
 #define MAX 9
@@ -66,6 +67,15 @@ int main(int argc, string argv[])
 bool vote(string name)
 {
     // TODO
+    //Check if name present in candidates and update vote count
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (strcasecmp(candidates[i].name, name) == 0)
+        {
+            candidates[i].votes++;
+            return true;
+        }
+    }
     return false;
 }
 
@@ -73,5 +83,23 @@ bool vote(string name)
 void print_winner(void)
 {
     // TODO
+    //Find maximum vote count
+    int temp = candidates[1].votes;
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (temp < candidates[i].votes)
+        {
+            temp = candidates[i].votes;
+        }
+    }
+
+    //Print names of candidates having max count
+    for (int j = 0; j < candidate_count; j++)
+    {
+        if (temp == candidates[j].votes)
+        {
+            printf("%s\n", candidates[j].name);
+        }
+    }
     return;
 }
