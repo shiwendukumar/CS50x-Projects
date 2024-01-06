@@ -1,11 +1,17 @@
-sort1 uses: TODO
+sort1 uses: Bubble sort
 
-How do you know?: TODO
+How do you know?: It takes the longest time for sorting random numbers.
+                  It takes the longest time for sorting reversed numbers.
+                  It takes the least time for sorting already sorted numbers.
 
-sort2 uses: TODO
+sort2 uses: Merge sort
 
-How do you know?: TODO
+How do you know?: It takes the least time for sorting random numbers.
+                  It takes the least time for sorting reversed numbers.
+                  It takes more time than bubble sort but less than selection sort for sorting already sorted numbers.
 
-sort3 uses: TODO
+sort3 uses: Selection sort
 
-How do you know?: TODO
+How do you know?: It takes almost equal time to bubble sort for sorting random numbers.
+                  It takes more time than merge sort but less time than bubble sort for sorting reversed numbers.
+                  It takes longest time for sorting already sorted numbers.
