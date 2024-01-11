@@ -160,3 +160,4 @@ bool visa(long long input)
     }
     return false;
 }
+
