@@ -31,6 +31,7 @@ void record_preferences(int ranks[]);
 void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
+bool cycle(int loser, int winner);
 void print_winner(void);
 
 int main(int argc, string argv[])
@@ -129,7 +130,7 @@ void record_preferences(int ranks[])
 void add_pairs(void)
 {
     // TODO
-    for (int i = 0; i < candidate_count; i++)
+    for (int i = 0; i < candidate_count-1; i++)
     {
         for (int j = i+1; j < candidate_count; j++)
         {
@@ -154,7 +155,15 @@ void add_pairs(void)
 void sort_pairs(void)
 {
     // TODO
-    for (int i = 0; i < pair_count; i++)
+    for (int j = 0; j < pair_count-1; j++)
+    {
+        if ((preferences[pairs[j].winner][pairs[j].loser]) < (preferences[pairs[j + 1].winner][pairs[j + 1].loser]))
+        {
+            pair temp = pairs[j];
+            pairs[j] = pairs[j + 1];
+            pairs[j + 1] = temp;
+        }
+    }
     return;
 }
 
@@ -162,6 +171,13 @@ void sort_pairs(void)
 void lock_pairs(void)
 {
     // TODO
+    for (int i = 0; i < pair_count; i++)
+    {
+        if (cycle(pairs[i].loser, pairs[i].winner) == false)
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
+    }
     return;
 }
 
@@ -169,6 +185,42 @@ void lock_pairs(void)
 void print_winner(void)
 {
     // TODO
+    for (int i = 0; i < candidate_count; i++)
+    {
+        bool winner = true;
+        for (int j = 0; j < candidate_count; j++)
+        {
+            if (locked[j][i])
+            {
+                winner = false;
+            }
+        }
+
+        if (winner == true)
+        {
+            printf("%s\n", candidates[i]);
+        }
+    }
     return;
 }
 
+//Cycle Function
+bool cycle(int loser, int winner)
+{
+    if (loser == winner)
+    {
+        return true;
+    }
+
+    for (int j = 0; j < candidate_count; j++)
+    {
+        if (locked[loser][j] == true)
+        {
+            if (cycle(j, winner))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
