@@ -5,7 +5,7 @@ This project contains all my assignments for **CS50x 2024** by **Harvard Univers
 - Problem Sets
 - Final Project
 
-The topics included in the project are : 
+The topics covered in the project are : 
 
 - C Programming Language
 - Python
