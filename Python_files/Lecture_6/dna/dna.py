@@ -5,14 +5,46 @@ import sys
 def main():
 
     # TODO: Check for command-line usage
+    if (len(sys.argv) != 3):
+        print("Correct usage: python dna.py databases.csv sequences.txt")
+        sys.exit(1)
 
     # TODO: Read database file into a variable
+    database = []
+    with open(sys.argv[1]) as file:
+        reader = csv.DictReader(file)
+        for name in reader:
+            database.append(name)
     
     # TODO: Read DNA sequence file into a variable
+    with open(sys.argv[2]) as file1:
+        sample = file1.read()
+    counts = {}
 
     # TODO: Find longest match of each STR in DNA sequence
+    # SYNTAX SOURCE: https://note.nkmk.me/en/python-dict-keys-values-items/
+    for key in database[0].keys():
+        if key == 'name':
+            continue
+        else:
+            counts[key] = longest_match(sample, key)
 
     # TODO: Check database for matching profiles
+    # SYNTAX SOURCE: https://note.nkmk.me/en/python-dict-keys-values-items/
+    for row in database:
+        match = True
+        for key in row.keys():
+            if key == 'name':
+                continue
+            if int(row[key]) != counts[key]:
+                match = False
+                break
+
+        if match == True:
+            print(row['name'])
+            sys.exit(0)
+
+    print('No Match')
 
     return
 
