@@ -1,0 +1,3 @@
+This way of calculation of audio aura for an user might not be very representative of the listener because,
+-> The energy, valence and danceability and standardised by authorities for all types of users, therefore it can differ according to different perspectives.
+-> For different people the perception of a particular song may be different from one another, therefore different from standards.
