@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            document.addEventListener('DOMContentLoaded', function() {
+                let right = document.querySelector('.right');
+                right.addEventListener('click', function() {
+                    right.style.backgroundColor = 'green';
+                    document.querySelector('#output1').innerHTML = 'Correct!';
+                });
+
+                let incorrects = document.querySelectorAll('.wrong');
+                for (let i = 0; i < incorrects.length; i++) {
+                    incorrects[i].addEventListener('click', function() {
+                        incorrects[i].style.backgroundColor = 'red';
+                        document.querySelector('#output1').innerHTML = 'Incorrect!';
+                    });
+                }
+
+
+                //Free response question check
+                document.querySelector('#check').addEventListener('click', function() {
+                    let input = document.querySelector('input');
+                    if (input.value === '1925') {
+                        input.style.backgroundColor = 'green';
+                        document.querySelector('#output2').innerHTML = 'Correct!';
+                    } else {
+                        input.style.backgroundColor = 'red';
+                        document.querySelector('#output2').innerHTML = 'Incorrect!';
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>Who is the prime minister of India? </h3>
+                <button class="right">Narendra Damodardas Modi</button>
+                <button class="wrong">Rahul Gandhi</button>
+                <button class="wrong">Manmohan Singh</button>
+                <button class="wrong">Atal Bihari Vajpayee</button>
+
+                <p id="output1"></p>
+            </div>
+
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>In which year was Rashtriya Military School Chail established?</h3>
+                <input type="text"></input>
+                <button id="check">Check Answer</button>
+
+                <p id="output2"></p>
+            </div>
+        </div>
+    </body>
+</html>
